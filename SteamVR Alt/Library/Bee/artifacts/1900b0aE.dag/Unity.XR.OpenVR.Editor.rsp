@@ -111,14 +111,14 @@
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll"
--r:"E:/SteamVR Alternate Version/SteamVR Project Alternate Version/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/log4netPlastic.dll"
--r:"E:/SteamVR Alternate Version/SteamVR Project Alternate Version/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll"
--r:"E:/SteamVR Alternate Version/SteamVR Project Alternate Version/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/unityplastic.dll"
--r:"E:/SteamVR Alternate Version/SteamVR Project Alternate Version/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
--r:"E:/SteamVR Alternate Version/SteamVR Project Alternate Version/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
--r:"E:/SteamVR Alternate Version/SteamVR Project Alternate Version/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll"
--r:"E:/SteamVR Alternate Version/SteamVR Project Alternate Version/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll"
--r:"E:/SteamVR Alternate Version/SteamVR Project Alternate Version/Library/PackageCache/com.unity.visualscripting@1.6.1/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+-r:"E:/SteamVR Alternate Version/SteamVR Alt/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/log4netPlastic.dll"
+-r:"E:/SteamVR Alternate Version/SteamVR Alt/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll"
+-r:"E:/SteamVR Alternate Version/SteamVR Alt/Library/PackageCache/com.unity.collab-proxy@1.7.1/Lib/Editor/PlasticSCM/unityplastic.dll"
+-r:"E:/SteamVR Alternate Version/SteamVR Alt/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
+-r:"E:/SteamVR Alternate Version/SteamVR Alt/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
+-r:"E:/SteamVR Alternate Version/SteamVR Alt/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll"
+-r:"E:/SteamVR Alternate Version/SteamVR Alt/Library/PackageCache/com.unity.visualscripting@1.6.1/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll"
+-r:"E:/SteamVR Alternate Version/SteamVR Alt/Library/PackageCache/com.unity.visualscripting@1.6.1/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"E:/Unity/Unity Engine/2021.1.18f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"E:/Unity/Unity Engine/2021.1.18f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"E:/Unity/Unity Engine/2021.1.18f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
@@ -323,10 +323,10 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
-"Library/PackageCache/com.valvesoftware.unity.openvr@fa50327925c5-1614121125000/Editor/OpenVRBuildProcessor.cs"
-"Library/PackageCache/com.valvesoftware.unity.openvr@fa50327925c5-1614121125000/Editor/OpenVRLoaderMetadata.cs"
-"Library/PackageCache/com.valvesoftware.unity.openvr@fa50327925c5-1614121125000/Editor/OpenVRSettingsCopier.cs"
-"Library/PackageCache/com.valvesoftware.unity.openvr@fa50327925c5-1614121125000/Editor/OpenVRSettingsEditor.cs"
+"Library/PackageCache/com.valvesoftware.unity.openvr@e9ec07cdbfb7-1614121125000/Editor/OpenVRBuildProcessor.cs"
+"Library/PackageCache/com.valvesoftware.unity.openvr@e9ec07cdbfb7-1614121125000/Editor/OpenVRLoaderMetadata.cs"
+"Library/PackageCache/com.valvesoftware.unity.openvr@e9ec07cdbfb7-1614121125000/Editor/OpenVRSettingsCopier.cs"
+"Library/PackageCache/com.valvesoftware.unity.openvr@e9ec07cdbfb7-1614121125000/Editor/OpenVRSettingsEditor.cs"
 -langversion:8.0
 
 /deterministic
