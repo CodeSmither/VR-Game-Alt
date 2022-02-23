@@ -19,6 +19,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private bool Reached3;
     [SerializeField] private bool gatheredPoints;
     private EnemyHealth enemyHealth;
+    private bool targetInSight;
+    private bool partOfGroup;
 
     public bool Cooldown
     {
@@ -38,9 +40,10 @@ public class EnemyMovement : MonoBehaviour
         Reached1 = false;
         Reached2 = false;
         Reached3 = false;
+        targetInSight = false;
     }
 
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         if (cooldown == false)
@@ -66,11 +69,23 @@ public class EnemyMovement : MonoBehaviour
         if (cooldown == true)
         {
             EnemyAgent.speed = 1.1f;
-            if (gatheredPoints == false)
+
+            if (partOfGroup == true)
+            {
+                if (enemyHealth.health < 30)
+                {
+                    FollowGroupMode();
+                }
+                else if (enemyHealth.health > 30)
+                {
+                    BreakOffMode();
+                }
+            }
+            else if (gatheredPoints == false && targetInSight == false && partOfGroup == false)
             {
                 Wandering();
             }
-            else if(gatheredPoints == true)
+            else if(gatheredPoints == true && targetInSight == false && partOfGroup == false)
             {
                 if (Reached1 == false)
                 {
@@ -113,11 +128,16 @@ public class EnemyMovement : MonoBehaviour
                 }
                 
             }
+            else if (targetInSight == true)
+            {
+                AlertMode();
+            }
         }
         if (0 != EnemyAgent.velocity.normalized.magnitude)
         {
             gameObject.transform.rotation = Quaternion.LookRotation(EnemyAgent.velocity);
         }
+        
     }
 
     IEnumerator Cooldown2Norm()
@@ -147,16 +167,32 @@ public class EnemyMovement : MonoBehaviour
 
     private void AlertMode()
     {
-
+        if (targetInSight == true)
+        {
+            if (enemyHealth.health > 30)
+            {
+                OpenFire();
+            }
+            else if (enemyHealth.health < 30)
+            {
+                FleeingMode();
+            }
+        }
+        else if (targetInSight == false)
+        {
+            if (partOfGroup == false)
+            {
+                FindGroupMode();
+            }
+             
+        }
+        
         // chase after target
     }
 
     private void FleeingMode()
     {
-        if(enemyHealth.health < 30)
-        {
-
-        }
+        
         // If health is below a certain amount run away
     }
 
@@ -179,5 +215,5 @@ public class EnemyMovement : MonoBehaviour
     {
         // If health has recovered a certain amount stay with group
     }
-
+    
 }
