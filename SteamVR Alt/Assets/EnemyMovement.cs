@@ -20,6 +20,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private bool Reached3;
     [SerializeField] private bool gatheredPoints;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform gunPoint;
     private EnemyHealth enemyHealth;
     private bool targetInSight;
     private bool partOfGroup;
@@ -56,21 +57,21 @@ public class EnemyMovement : MonoBehaviour
         Player = GameObject.Find("Player").transform;
         RaycastHit hit;
         
-        if (Physics.Raycast(transform.position + Vector3.up + Vector3.forward,Player.position - transform.position, out hit, Mathf.Infinity, Raycastable))
+        if (Physics.Raycast(transform.position + Vector3.up,Player.position - transform.position, out hit, Mathf.Infinity, Raycastable))
         {
             Debug.DrawRay(transform.position + Vector3.up, Player.position - transform.position, Color.red, 0, true);
             if (hit.collider.gameObject != null)
             {
                 
-                if (hit.collider.gameObject.tag == "Player")
+                if (hit.collider.gameObject.tag == "VRPlayer")
                 {
                     targetInSight = true;
-                    Debug.Log("I am Hitting a Player");
+                   
+                    
                 }
                 else if (hit.collider.gameObject.tag == "Walls")
                 {
-                    targetInSight = false;
-                    
+                    targetInSight = false;   
                 }
                 else
                 {
@@ -81,7 +82,7 @@ public class EnemyMovement : MonoBehaviour
         
         
 
-        if (cooldown == false)
+        if (cooldown == false && targetInSight == false && partOfGroup == false)
         {
             EnemyAgent.speed = 2f;
             if (objectiveNumber == -1)
@@ -120,7 +121,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 Wandering();
             }
-            else if(gatheredPoints == true && targetInSight == false && partOfGroup == false)
+            else if (gatheredPoints == true && targetInSight == false && partOfGroup == false)
             {
                 if (Reached1 == false)
                 {
@@ -161,18 +162,22 @@ public class EnemyMovement : MonoBehaviour
                     Reached2 = false;
                     Reached3 = false;
                 }
-                
-            }
-            else if (targetInSight == true)
-            {
-                AlertMode();
+
             }
         }
-        if (0 != EnemyAgent.velocity.normalized.magnitude)
+        if (targetInSight == true)
+        {
+            AlertMode();
+        }
+        
+        if (targetInSight == true)
+        {
+            gameObject.transform.rotation = Quaternion.LookRotation(Player.position - transform.position);
+        }
+        else if (0 != EnemyAgent.velocity.normalized.magnitude && targetInSight == false)
         {
             gameObject.transform.rotation = Quaternion.LookRotation(EnemyAgent.velocity);
         }
-        
 
         if(Firing == true)
         {
@@ -213,10 +218,12 @@ public class EnemyMovement : MonoBehaviour
             if (enemyHealth.health > 30)
             {
                 StartCoroutine(FireandFollow());
+               
             }
             else if (enemyHealth.health < 30)
             {
                 FleeingMode();
+                
             }
         }
         else if (targetInSight == false)
@@ -277,12 +284,34 @@ public class EnemyMovement : MonoBehaviour
 
         if (firingCooldown == false)
         {
-            GameObject Bullet = Instantiate(bullet, gameObject.transform.position + Vector3.forward, Quaternion.Euler(gameObject.transform.forward));
-            Bullet.GetComponent<Rigidbody>().AddForce(Bullet.transform.forward * 10f);
-
-            firingCooldown = true;
+           
+            if (Vector3.Dot(transform.forward,(Player.position - transform.position).normalized) > 0.95f && Vector3.Dot(transform.forward, (Player.position - transform.position).normalized) < 1.05f)
+            {
+                for (int x = 0; x < 6; x++)
+                {
+                    StartCoroutine(BulletShot(0.1f * x));
+                    if (x == 3)
+                    {
+                        firingCooldown = true;
+                    }
+                }
+                StartCoroutine(Reload());
+                
+            }
         }
         // If in alertmode and target is in site open fire
+    }
+
+    IEnumerator BulletShot(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        GameObject Bullet = Instantiate(bullet,gunPoint.position, Quaternion.LookRotation(Player.position - transform.position));
+        Bullet.GetComponent<Rigidbody>().AddForce(Bullet.transform.forward * 1000f);
+    }
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(5f);
+        firingCooldown = false;
     }
 
     private void FindGroupMode()

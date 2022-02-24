@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : EnemyMovement
+public class EnemyHealth : MonoBehaviour
 {
-    protected internal int health;
+    public int health;
 }
