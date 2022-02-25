@@ -349,6 +349,8 @@
 "Assets/BulletLifeTime.cs"
 "Assets/EnemyHealth.cs"
 "Assets/EnemyMovement.cs"
+"Assets/EnemySpawner.cs"
+"Assets/PlayerHealth.cs"
 "Assets/WayPoints.cs"
 -langversion:8.0
 

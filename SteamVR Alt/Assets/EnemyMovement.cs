@@ -20,6 +20,12 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private bool Reached3;
     [SerializeField] private bool gatheredPoints;
     [SerializeField] private GameObject bullet;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private Transform gunPoint;
+    [SerializeField] private GameObject PlayerHitBox; 
+    [SerializeField] private int BulletSpead;
+>>>>>>> Stashed changes
     private EnemyHealth enemyHealth;
     private bool targetInSight;
     private bool partOfGroup;
@@ -61,21 +67,32 @@ public class EnemyMovement : MonoBehaviour
             Debug.DrawRay(transform.position + Vector3.up, Player.position - transform.position, Color.red, 0, true);
             if (hit.collider.gameObject != null)
             {
+<<<<<<< Updated upstream
                 
                 if (hit.collider.gameObject.tag == "Player")
+=======
+                Debug.Log(hit.collider.gameObject.name);
+                if (hit.collider.gameObject.tag == "VRPlayer")
+>>>>>>> Stashed changes
                 {
                     targetInSight = true;
                     Debug.Log("I am Hitting a Player");
                 }
+<<<<<<< Updated upstream
                 else if (hit.collider.gameObject.tag == "Walls")
                 {
                     targetInSight = false;
                     
                 }
                 else
+=======
+                if (hit.collider.gameObject.tag == "Walls")
+>>>>>>> Stashed changes
                 {
-                    Debug.Log("I am Hitting Somthing Else :" + hit.collider.gameObject.name.ToString());
+                    targetInSight = false;
+                    
                 }
+                
             }
         }
         
@@ -168,7 +185,21 @@ public class EnemyMovement : MonoBehaviour
                 AlertMode();
             }
         }
+<<<<<<< Updated upstream
         if (0 != EnemyAgent.velocity.normalized.magnitude)
+=======
+        if (targetInSight == true || Firing == true)
+        {
+            AlertMode();
+            EnemyAgent.speed = 3f;
+        }
+        
+        if (targetInSight == true)
+        {
+            gameObject.transform.rotation = Quaternion.LookRotation(Player.position - transform.position);
+        }
+        else if (0 != EnemyAgent.velocity.normalized.magnitude && targetInSight == false)
+>>>>>>> Stashed changes
         {
             gameObject.transform.rotation = Quaternion.LookRotation(EnemyAgent.velocity);
         }
@@ -208,8 +239,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void AlertMode()
     {
-        if (targetInSight == true)
+        if (enemyHealth.health > 30)
         {
+<<<<<<< Updated upstream
             if (enemyHealth.health > 30)
             {
                 StartCoroutine(FireandFollow());
@@ -218,6 +250,14 @@ public class EnemyMovement : MonoBehaviour
             {
                 FleeingMode();
             }
+=======
+            StartCoroutine(FireandFollow());
+
+        }
+        if (targetInSight == true && enemyHealth.health < 30)
+        {
+            FleeingMode();
+>>>>>>> Stashed changes
         }
         else if (targetInSight == false)
         {
@@ -233,16 +273,17 @@ public class EnemyMovement : MonoBehaviour
 
     IEnumerator FireandFollow()
     {
+        
         if (targetInSight == true)
         {
             Firing = true;
         }
-        else if (targetInSight == false)
+        if (targetInSight == false)
         {
+            
             yield return new WaitForSeconds(5f);
             Firing = false;
         }
-        
     }
 
     private void FleeingMode()
@@ -264,27 +305,69 @@ public class EnemyMovement : MonoBehaviour
 
     private void OpenFire()
     {
+        
         if (3f <= Vector3.Distance(gameObject.transform.position,Player.position))
         {
             Vector3 BackPoint = -((new Vector3 (Player.position.x,0,Player.position.z) - new Vector3 (gameObject.transform.position.x,0,gameObject.transform.position.z)).normalized * 5f);
             EnemyAgent.SetDestination(BackPoint);
+            
         }
-        else if (Vector3.Distance(gameObject.transform.position, Player.position) >= 8f)
+        if (Vector3.Distance(gameObject.transform.position, Player.position) >= 6f)
         {
-            MovementPoints = MovementPoints.OrderBy(go => go.GetComponent<WayPoints>().distanceToPlayer(transform.position)).ToArray();
+            MovementPoints = MovementPoints.OrderBy(go => go.GetComponent<WayPoints>().distanceToPlayer(Player.position)).ToArray();
             EnemyAgent.SetDestination(MovementPoints[0].transform.position);
+            
         }
 
         if (firingCooldown == false)
         {
+<<<<<<< Updated upstream
             GameObject Bullet = Instantiate(bullet, gameObject.transform.position + Vector3.forward, Quaternion.Euler(gameObject.transform.forward));
             Bullet.GetComponent<Rigidbody>().AddForce(Bullet.transform.forward * 10f);
 
             firingCooldown = true;
+=======
+           
+            if (Vector3.Dot(transform.forward,(Player.position - transform.position).normalized) > 0.95f && Vector3.Dot(transform.forward, (Player.position - transform.position).normalized) < 1.05f)
+            {
+                StartCoroutine(Reload());
+                for (int x = 0; x < 6; x++)
+                {
+                    StartCoroutine(BulletShot(0.1f * x));
+                    if (x == 3)
+                    {
+                        firingCooldown = true;
+                    }
+                }
+                StartCoroutine(Reload());
+                
+            }
+>>>>>>> Stashed changes
         }
         // If in alertmode and target is in site open fire
     }
 
+<<<<<<< Updated upstream
+=======
+    IEnumerator BulletShot(float waitTime)
+    {
+        float BulletSpreadx = Random.Range(-BulletSpead, BulletSpead);
+        float BulletSpready = Random.Range(-BulletSpead, BulletSpead);
+        Quaternion InaccuracyModifier = Quaternion.Euler(BulletSpreadx,BulletSpready,0f);
+        Quaternion OnTargetbulletRotation = Quaternion.LookRotation(PlayerHitBox.transform.position - transform.position);
+        Quaternion bulletRotation = OnTargetbulletRotation * InaccuracyModifier;
+        yield return new WaitForSeconds(waitTime);
+        GameObject Bullet = Instantiate(bullet,gunPoint.position, bulletRotation);
+        Bullet.name = "Bullet";
+        Bullet.GetComponent<Rigidbody>().AddForce(Bullet.transform.forward * 1000f);
+    }
+    IEnumerator Reload()
+    {
+        yield return new WaitForSeconds(5f);
+        firingCooldown = false;
+    }
+
+>>>>>>> Stashed changes
     private void FindGroupMode()
     {
         // If health is below a certain amount and has fled from target find an enemy to team up with
