@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
 {
     private NavMeshAgent EnemyAgent;
     [SerializeField] private NavMeshPath EnemyPathing;
-    [SerializeField] private GameObject[] MovementPoints;
+    public GameObject[] MovementPoints;
     [SerializeField] private int objectiveNumber = -1;
     [SerializeField] private bool cooldown;
     [SerializeField] private bool alertMode;
@@ -21,14 +21,17 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private bool gatheredPoints;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform gunPoint;
+    [SerializeField] private GameObject PlayerHitBox; 
+    [SerializeField] private int BulletSpead;
+    [SerializeField] private MovementPointStore movementPointStore;
     private EnemyHealth enemyHealth;
-    private bool targetInSight;
+    [SerializeField]private bool targetInSight;
     private bool partOfGroup;
     private Transform Player;
-    [SerializeField]private LayerMask Raycastable;
+    [SerializeField] private LayerMask Raycastable;
     private Vector3 FleeingPoint;
-    private bool Firing;
-    private bool firingCooldown;
+    [SerializeField]private bool Firing;
+    [SerializeField]private bool firingCooldown;
 
     public bool Cooldown
     {
@@ -43,12 +46,19 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        movementPointStore = GameObject.Find("TeleportPoints").GetComponent<MovementPointStore>();
         EnemyAgent = gameObject.GetComponent<NavMeshAgent>();
         enemyHealth = gameObject.GetComponent<EnemyHealth>();
         Reached1 = false;
         Reached2 = false;
         Reached3 = false;
         targetInSight = false;
+        BulletSpead = 12;
+        PlayerHitBox = GameObject.Find("PlayerHitBox");
+        for (int x = 0; x < 32 + 1; x++)
+        {
+            MovementPoints[x] = movementPointStore.MovementPoints[x];
+        }
     }
 
 
@@ -56,33 +66,47 @@ public class EnemyMovement : MonoBehaviour
     {
         Player = GameObject.Find("Player").transform;
         RaycastHit hit;
-        
-        if (Physics.Raycast(transform.position + Vector3.up,Player.position - transform.position, out hit, Mathf.Infinity, Raycastable))
+
+        if (Physics.Raycast(transform.position + (transform.forward/2), Player.position - transform.position, out hit, Mathf.Infinity, Raycastable))
         {
-            Debug.DrawRay(transform.position + Vector3.up, Player.position - transform.position, Color.red, 0, true);
+            Debug.DrawRay(transform.position +  (transform.forward/2), Player.position - transform.position, Color.red, 0, true);
             if (hit.collider.gameObject != null)
             {
-                
+                //Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.tag == "VRPlayer")
                 {
                     targetInSight = true;
-                   
+                }
+
+                if (hit.collider.gameObject.tag == "Walls")
+                {
+                    targetInSight = false;
                     
                 }
-                else if (hit.collider.gameObject.tag == "Walls")
-                {
-                    targetInSight = false;   
-                }
-                else
-                {
-                    Debug.Log("I am Hitting Somthing Else :" + hit.collider.gameObject.name.ToString());
-                }
-            }
-        }
-        
-        
 
-        if (cooldown == false && targetInSight == false && partOfGroup == false)
+            }
+            
+        }
+        if (targetInSight == true || Firing == true)
+        {
+            AlertMode();
+            EnemyAgent.speed = 3f;
+        }
+
+        if (targetInSight == true)
+        {
+            gameObject.transform.rotation = Quaternion.LookRotation(Player.position - transform.position);
+        }
+        else if (0 != EnemyAgent.velocity.normalized.magnitude && targetInSight == false) { Quaternion.LookRotation(new Vector3(EnemyAgent.velocity.normalized.x, 0, EnemyAgent.velocity.normalized.z)); }
+
+        if (Firing == true)
+        {
+
+            OpenFire();
+
+        }
+
+        if (cooldown == false && targetInSight == false)
         {
             EnemyAgent.speed = 2f;
             if (objectiveNumber == -1)
@@ -100,9 +124,9 @@ public class EnemyMovement : MonoBehaviour
                 Cooldown = true;
                 gatheredPoints = false;
             }
-            
+
         }
-        if (cooldown == true)
+        if (cooldown == true && targetInSight == false)
         {
             EnemyAgent.speed = 1.1f;
 
@@ -164,26 +188,9 @@ public class EnemyMovement : MonoBehaviour
                 }
 
             }
-        }
-        if (targetInSight == true)
-        {
-            AlertMode();
-        }
-        
-        if (targetInSight == true)
-        {
-            gameObject.transform.rotation = Quaternion.LookRotation(Player.position - transform.position);
-        }
-        else if (0 != EnemyAgent.velocity.normalized.magnitude && targetInSight == false)
-        {
-            gameObject.transform.rotation = Quaternion.LookRotation(EnemyAgent.velocity);
-        }
-
-        if(Firing == true)
-        {
-            OpenFire();
             
         }
+        
     }
 
     IEnumerator Cooldown2Norm()
@@ -200,31 +207,24 @@ public class EnemyMovement : MonoBehaviour
         wanderpoint3 = new Vector3(gameObject.transform.position.x + 1, 0, gameObject.transform.position.z - 1);
     }
 
-
-    private void SearchingState()
-    {
-        // 2 second delay between walking and being found in alert mode
-        if (true)
-        {
-            alertMode = true;
-        }
-        
-    }
-
     private void AlertMode()
     {
-        if (targetInSight == true)
+
+
+        if (enemyHealth.health > 30)
         {
             if (enemyHealth.health > 30)
             {
                 StartCoroutine(FireandFollow());
-               
             }
             else if (enemyHealth.health < 30)
             {
                 FleeingMode();
-                
             }
+        }
+        if (targetInSight == true && enemyHealth.health < 30)
+        {
+            FleeingMode();
         }
         else if (targetInSight == false)
         {
@@ -232,24 +232,26 @@ public class EnemyMovement : MonoBehaviour
             {
                 FindGroupMode();
             }
-             
         }
-        
         // chase after target
     }
 
     IEnumerator FireandFollow()
     {
+
         if (targetInSight == true)
         {
             Firing = true;
         }
-        else if (targetInSight == false)
+        if (targetInSight == false)
         {
             yield return new WaitForSeconds(5f);
-            Firing = false;
+            if (targetInSight == false)
+            {
+                Firing = false;
+            }
+            
         }
-        
     }
 
     private void FleeingMode()
@@ -257,10 +259,10 @@ public class EnemyMovement : MonoBehaviour
 
         // If health is below a certain amount run away
         MovementPoints = MovementPoints.OrderBy(go => go.GetComponent<WayPoints>().distanceToEnemy(transform.position)).ToArray();
-        foreach(GameObject Points in MovementPoints)
+        foreach (GameObject Points in MovementPoints)
         {
             RaycastHit hit;
-            if(Physics.Raycast(Points.transform.position + Vector3.up, Player.position - Points.transform.position, out hit, 40f, Raycastable) && hit.collider.gameObject.tag != "Player")
+            if (Physics.Raycast(Points.transform.position + Vector3.up, Player.position - Points.transform.position, out hit, 40f, Raycastable) && hit.collider.gameObject.tag != "Player")
             {
                 FleeingPoint = Points.transform.position;
                 break;
@@ -271,22 +273,29 @@ public class EnemyMovement : MonoBehaviour
 
     private void OpenFire()
     {
-        if (3f <= Vector3.Distance(gameObject.transform.position,Player.position))
+        Debug.Log(Vector3.Distance(gameObject.transform.position, Player.position));
+        if (3f >= Vector3.Distance(gameObject.transform.position, Player.position))
         {
-            Vector3 BackPoint = -((new Vector3 (Player.position.x,0,Player.position.z) - new Vector3 (gameObject.transform.position.x,0,gameObject.transform.position.z)).normalized * 5f);
+            EnemyAgent.ResetPath();
+            Vector3 BackPoint = -((new Vector3(Player.position.x, 0, Player.position.z) - new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z)).normalized * 5f);
             EnemyAgent.SetDestination(BackPoint);
+            Debug.Log("FallBack");
         }
-        else if (Vector3.Distance(gameObject.transform.position, Player.position) >= 8f)
+        if (Vector3.Distance(gameObject.transform.position, Player.position) >= 6f)
         {
-            MovementPoints = MovementPoints.OrderBy(go => go.GetComponent<WayPoints>().distanceToPlayer(transform.position)).ToArray();
+            EnemyAgent.ResetPath();
+            MovementPoints = MovementPoints.OrderBy(go => go.GetComponent<WayPoints>().distanceToPlayer(Player.position)).ToArray();
+            Debug.Log(MovementPoints[0].transform.position);
             EnemyAgent.SetDestination(MovementPoints[0].transform.position);
+            
         }
 
         if (firingCooldown == false)
         {
-           
+
             if (Vector3.Dot(transform.forward,(Player.position - transform.position).normalized) > 0.95f && Vector3.Dot(transform.forward, (Player.position - transform.position).normalized) < 1.05f)
             {
+                StartCoroutine(Reload());
                 for (int x = 0; x < 6; x++)
                 {
                     StartCoroutine(BulletShot(0.1f * x));
@@ -298,14 +307,22 @@ public class EnemyMovement : MonoBehaviour
                 StartCoroutine(Reload());
                 
             }
+
         }
         // If in alertmode and target is in site open fire
     }
 
     IEnumerator BulletShot(float waitTime)
     {
+        float BulletSpreadx = Random.Range(-BulletSpead, BulletSpead);
+        float BulletSpready = Random.Range(-BulletSpead, BulletSpead);
+        Quaternion InaccuracyModifier = Quaternion.Euler(BulletSpreadx,BulletSpready,0f);
+        Quaternion OnTargetbulletRotation = Quaternion.LookRotation(PlayerHitBox.transform.position - transform.position);
+        Quaternion bulletRotation = OnTargetbulletRotation * InaccuracyModifier;
         yield return new WaitForSeconds(waitTime);
-        GameObject Bullet = Instantiate(bullet,gunPoint.position, Quaternion.LookRotation(Player.position - transform.position));
+        GameObject Bullet = Instantiate(bullet,gunPoint.position, bulletRotation);
+        Bullet.name = "Bullet";
+
         Bullet.GetComponent<Rigidbody>().AddForce(Bullet.transform.forward * 1000f);
     }
     IEnumerator Reload()
@@ -313,6 +330,7 @@ public class EnemyMovement : MonoBehaviour
         yield return new WaitForSeconds(5f);
         firingCooldown = false;
     }
+
 
     private void FindGroupMode()
     {
@@ -328,5 +346,5 @@ public class EnemyMovement : MonoBehaviour
     {
         // If health has recovered a certain amount stay with group
     }
-    
+
 }

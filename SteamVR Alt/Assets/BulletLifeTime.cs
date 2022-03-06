@@ -13,4 +13,11 @@ public class BulletLifeTime : MonoBehaviour
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Walls")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
