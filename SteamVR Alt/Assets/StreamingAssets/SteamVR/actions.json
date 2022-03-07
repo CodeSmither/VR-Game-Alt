@@ -112,14 +112,6 @@
       "type": "vibration"
     },
     {
-      "name": "/actions/NewSet/in/Teleport",
-      "type": "boolean"
-    },
-    {
-      "name": "/actions/NewSet/in/GrabPinch",
-      "type": "boolean"
-    },
-    {
       "name": "/actions/Sword/in/GrabGrip",
       "type": "boolean"
     },

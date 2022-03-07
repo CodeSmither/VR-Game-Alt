@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
             health -= 10;
             Destroy(other.gameObject);
         }
-        if (other.gameObject.name == "Sword")
+        if (other.gameObject.name == "Sword(clone)")
         {
             health -= 50;
         }
