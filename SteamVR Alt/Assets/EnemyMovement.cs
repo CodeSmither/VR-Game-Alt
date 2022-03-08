@@ -6,7 +6,7 @@ using System.Linq;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private NavMeshAgent EnemyAgent;
+    protected internal NavMeshAgent EnemyAgent;
     [SerializeField] private NavMeshPath EnemyPathing;
     public GameObject[] MovementPoints;
     [SerializeField] private int objectiveNumber = -1;
@@ -25,13 +25,14 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private int BulletSpead;
     [SerializeField] private MovementPointStore movementPointStore;
     private EnemyHealth enemyHealth;
-    [SerializeField]private bool targetInSight;
+    [SerializeField]protected internal bool targetInSight;
     private bool partOfGroup;
     private Transform Player;
     [SerializeField] private LayerMask Raycastable;
     private Vector3 FleeingPoint;
-    [SerializeField]private bool Firing;
-    [SerializeField]private bool firingCooldown;
+    [SerializeField]protected internal bool Firing;
+    [SerializeField]protected internal bool firingCooldown;
+    [SerializeField] protected internal bool isFiring;
 
     public bool Cooldown
     {
@@ -55,7 +56,8 @@ public class EnemyMovement : MonoBehaviour
         targetInSight = false;
         BulletSpead = 12;
         PlayerHitBox = GameObject.Find("PlayerHitBox");
-        for (int x = 0; x < 32 + 1; x++)
+        isFiring = false;
+        for (int x = 0; x < 31 + 1; x++)
         {
             MovementPoints[x] = movementPointStore.MovementPoints[x];
         }
@@ -83,7 +85,7 @@ public class EnemyMovement : MonoBehaviour
                     targetInSight = false;
                     
                 }
-
+                
             }
             
         }
@@ -273,19 +275,19 @@ public class EnemyMovement : MonoBehaviour
 
     private void OpenFire()
     {
-        Debug.Log(Vector3.Distance(gameObject.transform.position, Player.position));
+        //Debug.Log(Vector3.Distance(gameObject.transform.position, Player.position));
         if (3f >= Vector3.Distance(gameObject.transform.position, Player.position))
         {
             EnemyAgent.ResetPath();
             Vector3 BackPoint = -((new Vector3(Player.position.x, 0, Player.position.z) - new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z)).normalized * 5f);
             EnemyAgent.SetDestination(BackPoint);
-            Debug.Log("FallBack");
+            //Debug.Log("FallBack");
         }
         if (Vector3.Distance(gameObject.transform.position, Player.position) >= 6f)
         {
             EnemyAgent.ResetPath();
             MovementPoints = MovementPoints.OrderBy(go => go.GetComponent<WayPoints>().distanceToPlayer(Player.position)).ToArray();
-            Debug.Log(MovementPoints[0].transform.position);
+            //Debug.Log(MovementPoints[0].transform.position);
             EnemyAgent.SetDestination(MovementPoints[0].transform.position);
             
         }
@@ -298,16 +300,22 @@ public class EnemyMovement : MonoBehaviour
                 StartCoroutine(Reload());
                 for (int x = 0; x < 6; x++)
                 {
+                    isFiring = true;
                     StartCoroutine(BulletShot(0.1f * x));
                     if (x == 3)
                     {
                         firingCooldown = true;
+                        
                     }
                 }
                 StartCoroutine(Reload());
                 
             }
 
+        }
+        else if (firingCooldown == true)
+        {
+            isFiring = false;
         }
         // If in alertmode and target is in site open fire
     }

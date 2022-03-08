@@ -23,7 +23,7 @@ public class SampleGun : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        ammo = 12;
+        ammo = 24;
         interactable = GetComponent<Interactable>();
     }
 
@@ -45,10 +45,11 @@ public class SampleGun : MonoBehaviour
                 if (Time.time>=timeTilNextShot && ammo > 0)
                 {
                     GameObject bullet = Instantiate(bulletprefab, barrel.position, Quaternion.LookRotation(barrelObj.transform.forward));
+                    ammo--;
                     if (bullet != null)
                     {
                         bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 1000f);
-                        timeTilNextShot = Time.time + timeBetweenShots;
+                        timeTilNextShot = (Time.time/2) + timeBetweenShots;
                     }
                 }
                 else if(ammo == 0)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5088507559075752536}
   - component: {fileID: 246246362329475403}
   - component: {fileID: 4565719353297540950}
-  - component: {fileID: 1219372652654075024}
+  - component: {fileID: 7150398528577594781}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -83,8 +83,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1219372652654075024
-SphereCollider:
+--- !u!64 &7150398528577594781
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,9 +93,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &6102701634149807071
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +460,7 @@ GameObject:
   - component: {fileID: 6102701634326492977}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -944,7 +945,7 @@ GameObject:
   - component: {fileID: 6102701634504535479}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2228,7 +2229,7 @@ GameObject:
   - component: {fileID: 6102701635512480702}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2985,7 +2986,7 @@ GameObject:
   - component: {fileID: 6102701636010924616}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

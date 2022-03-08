@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 148754682810469025}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 3661280610142740348}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

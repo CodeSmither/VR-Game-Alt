@@ -15,10 +15,14 @@ public class HealthBall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer != 6 && other.gameObject.tag == "RayCastable")
+        if(other.gameObject.layer == 6 && other.gameObject.tag == "VRPlayer")
         {
             playerHealth.Health += 40;
             Destroy(gameObject);
         }
+        //if (other.gameObject != null)
+        //{
+        //    Debug.Log(other.gameObject.name);
+        // }
     }
 }

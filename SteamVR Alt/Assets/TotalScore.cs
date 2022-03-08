@@ -23,6 +23,6 @@ public class TotalScore : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PointsText.text = points.ToString();
+        PointsText.text = "Score:" + points.ToString();
     }
 }

@@ -36,6 +36,7 @@ public class MenuUIOptions : MonoBehaviour
     {
         player.transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         OptionsMenu.SetActive(false);
+        playerHealth.InGame = true;
     }
     public void EnableOptions()
     {

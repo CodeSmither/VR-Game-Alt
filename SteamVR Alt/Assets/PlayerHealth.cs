@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private GameObject VRPlayer;
     [SerializeField] private int health;
-    private bool InGame;
+    public bool InGame;
+    
 
     public int Health
     {
@@ -64,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
     private void GameOver()
     {
         VRPlayer.transform.position = new Vector3(0, 0, 50);
+        InGame = false;
     }
 
     public void Restart()
