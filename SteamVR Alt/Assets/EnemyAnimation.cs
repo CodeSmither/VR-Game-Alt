@@ -30,19 +30,19 @@ public class EnemyAnimation : MonoBehaviour
         }
         if (enemyMovement.firingCooldown == true)
         {
-            EnemyAnimator.SetBool("Firing", true);
+            EnemyAnimator.SetBool("Cooldown", true);
         }
         else if (enemyMovement.firingCooldown == false)
         {
-            EnemyAnimator.SetBool("Firing", false);
-        }
-        if(enemyMovement.isFiring == true)
-        {
-            EnemyAnimator.SetBool("Cooldown", false);
-        }
-        else if(enemyMovement.isFiring == false)
-        {
             EnemyAnimator.SetBool("Cooldown", true);
+        }
+        if(enemyMovement.Firing == true)
+        {
+            EnemyAnimator.SetBool("Firing", true);
+        }
+        else if(enemyMovement.Firing == true)
+        {
+            EnemyAnimator.SetBool("Firing", false);
         }
         EnemyAnimator.SetInteger("Health", EnemyHealthLevel);
     }

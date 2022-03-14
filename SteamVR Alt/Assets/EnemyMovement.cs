@@ -30,9 +30,8 @@ public class EnemyMovement : MonoBehaviour
     private Transform Player;
     [SerializeField] private LayerMask Raycastable;
     private Vector3 FleeingPoint;
-    [SerializeField]protected internal bool Firing;
+    [SerializeField] protected internal bool Firing;
     [SerializeField]protected internal bool firingCooldown;
-    [SerializeField] protected internal bool isFiring;
 
     public bool Cooldown
     {
@@ -56,7 +55,6 @@ public class EnemyMovement : MonoBehaviour
         targetInSight = false;
         BulletSpead = 12;
         PlayerHitBox = GameObject.Find("PlayerHitBox");
-        isFiring = false;
         for (int x = 0; x < 31 + 1; x++)
         {
             MovementPoints[x] = movementPointStore.MovementPoints[x];
@@ -300,7 +298,7 @@ public class EnemyMovement : MonoBehaviour
                 StartCoroutine(Reload());
                 for (int x = 0; x < 6; x++)
                 {
-                    isFiring = true;
+                    
                     StartCoroutine(BulletShot(0.1f * x));
                     if (x == 3)
                     {
@@ -315,7 +313,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (firingCooldown == true)
         {
-            isFiring = false;
+            
         }
         // If in alertmode and target is in site open fire
     }

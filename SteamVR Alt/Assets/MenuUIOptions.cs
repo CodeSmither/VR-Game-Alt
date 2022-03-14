@@ -10,13 +10,14 @@ public class MenuUIOptions : MonoBehaviour
     [SerializeField] private PlayerHealth playerHealth;
     private int Volume = 50;
     [SerializeField] private Text VolumeText;
+    [SerializeField] private TotalScore totalScore;
 
     private void Awake()
     {
         OptionsMenu = GameObject.Find("OptionsMenu");
         player = GameObject.Find("Player");
         Invoke("MenuDisable",0.1f);
-        
+        totalScore = gameObject.GetComponent<TotalScore>();
         
     }
 
@@ -64,5 +65,6 @@ public class MenuUIOptions : MonoBehaviour
     public void Restart()
     {
         playerHealth.Restart();
+        totalScore.Restart();
     }
 }

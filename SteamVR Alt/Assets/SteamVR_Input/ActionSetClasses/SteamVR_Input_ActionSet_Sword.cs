@@ -48,5 +48,21 @@ namespace Valve.VR
                 return SteamVR_Actions.sword_Parry;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean Teleport
+        {
+            get
+            {
+                return SteamVR_Actions.sword_Teleport;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean GrabPinch
+        {
+            get
+            {
+                return SteamVR_Actions.sword_GrabPinch;
+            }
+        }
     }
 }

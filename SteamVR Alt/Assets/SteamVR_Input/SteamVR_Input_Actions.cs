@@ -77,6 +77,10 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_sword_Parry;
         
+        private static SteamVR_Action_Boolean p_sword_Teleport;
+        
+        private static SteamVR_Action_Boolean p_sword_GrabPinch;
+        
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get
@@ -317,6 +321,22 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean sword_Teleport
+        {
+            get
+            {
+                return SteamVR_Actions.p_sword_Teleport.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean sword_GrabPinch
+        {
+            get
+            {
+                return SteamVR_Actions.p_sword_GrabPinch.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -349,7 +369,9 @@ namespace Valve.VR
                     SteamVR_Actions.sword_GrabGrip,
                     SteamVR_Actions.sword_SnapTurnLeft,
                     SteamVR_Actions.sword_SnapTurnRight,
-                    SteamVR_Actions.sword_Parry};
+                    SteamVR_Actions.sword_Parry,
+                    SteamVR_Actions.sword_Teleport,
+                    SteamVR_Actions.sword_GrabPinch};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_Teleport,
@@ -378,7 +400,9 @@ namespace Valve.VR
                     SteamVR_Actions.sword_GrabGrip,
                     SteamVR_Actions.sword_SnapTurnLeft,
                     SteamVR_Actions.sword_SnapTurnRight,
-                    SteamVR_Actions.sword_Parry};
+                    SteamVR_Actions.sword_Parry,
+                    SteamVR_Actions.sword_Teleport,
+                    SteamVR_Actions.sword_GrabPinch};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.gun_Haptic};
@@ -408,7 +432,9 @@ namespace Valve.VR
                     SteamVR_Actions.sword_GrabGrip,
                     SteamVR_Actions.sword_SnapTurnLeft,
                     SteamVR_Actions.sword_SnapTurnRight,
-                    SteamVR_Actions.sword_Parry};
+                    SteamVR_Actions.sword_Parry,
+                    SteamVR_Actions.sword_Teleport,
+                    SteamVR_Actions.sword_GrabPinch};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.buggy_Throttle};
@@ -443,7 +469,9 @@ namespace Valve.VR
                     SteamVR_Actions.sword_GrabGrip,
                     SteamVR_Actions.sword_SnapTurnLeft,
                     SteamVR_Actions.sword_SnapTurnRight,
-                    SteamVR_Actions.sword_Parry};
+                    SteamVR_Actions.sword_Parry,
+                    SteamVR_Actions.sword_Teleport,
+                    SteamVR_Actions.sword_GrabPinch};
         }
         
         private static void PreInitActions()
@@ -478,6 +506,8 @@ namespace Valve.VR
             SteamVR_Actions.p_sword_SnapTurnLeft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/SnapTurnLeft")));
             SteamVR_Actions.p_sword_SnapTurnRight = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/SnapTurnRight")));
             SteamVR_Actions.p_sword_Parry = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/Parry")));
+            SteamVR_Actions.p_sword_Teleport = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/Teleport")));
+            SteamVR_Actions.p_sword_GrabPinch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/GrabPinch")));
         }
     }
 }

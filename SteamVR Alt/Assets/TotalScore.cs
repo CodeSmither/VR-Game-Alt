@@ -25,4 +25,8 @@ public class TotalScore : MonoBehaviour
     {
         PointsText.text = "Score:" + points.ToString();
     }
+    public void Restart()
+    {
+        Points = 0;
+    }
 }
