@@ -32,6 +32,11 @@ public class SampleGun : MonoBehaviour
     {
         bool actFire;
         bool actDrop;
+        timeTilNextShot += Time.deltaTime;
+        if (timeTilNextShot > timeBetweenShots)
+        {
+            timeTilNextShot = timeBetweenShots;
+        }
 
         if (interactable.attachedToHand)
         {
@@ -42,14 +47,14 @@ public class SampleGun : MonoBehaviour
             actDrop = dropAction.GetState(hand);
             if (actFire)
             {
-                if (Time.time>=timeTilNextShot && ammo > 0)
+                if (timeTilNextShot == timeBetweenShots && ammo > 0)
                 {
                     GameObject bullet = Instantiate(bulletprefab, barrel.position, Quaternion.LookRotation(barrelObj.transform.forward));
                     ammo--;
                     if (bullet != null)
                     {
                         bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * 1000f);
-                        timeTilNextShot = (Time.time/2) + timeBetweenShots;
+                        timeTilNextShot = 0;
                     }
                 }
                 else if(ammo == 0)

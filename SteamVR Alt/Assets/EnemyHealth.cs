@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.name == "Bullet"|| other.gameObject.name == "Bullet(Clone)")
         {
-            health -= 10;
+            health -= 20;
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("Sword"))
