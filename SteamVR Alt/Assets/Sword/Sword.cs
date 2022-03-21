@@ -44,7 +44,7 @@ public class Sword : MonoBehaviour
         cooldown = true;
         yield return new WaitForSeconds(0.5f);
         Shield.SetActive(false);
-        yield return new WaitForSeconds(5f);
-        cooldown = true;
+        yield return new WaitForSeconds(1f);
+        cooldown = false;
     }
 }
