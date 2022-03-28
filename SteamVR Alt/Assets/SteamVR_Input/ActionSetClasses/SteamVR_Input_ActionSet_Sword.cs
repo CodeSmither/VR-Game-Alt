@@ -64,5 +64,13 @@ namespace Valve.VR
                 return SteamVR_Actions.sword_GrabPinch;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean Unequip
+        {
+            get
+            {
+                return SteamVR_Actions.sword_Unequip;
+            }
+        }
     }
 }

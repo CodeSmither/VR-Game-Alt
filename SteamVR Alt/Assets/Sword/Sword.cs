@@ -7,8 +7,9 @@ using Valve.VR.InteractionSystem;
 public class Sword : MonoBehaviour
 {
     public SteamVR_Action_Boolean shieldAction;
-
+    public SteamVR_Action_Boolean unequip;
     private Interactable interactable;
+    private GameObject SwordPickup;
 
     private SteamVR_Input_Sources hand;
 
@@ -20,20 +21,28 @@ public class Sword : MonoBehaviour
     {
         Shield.SetActive(false);
         interactable = GetComponent<Interactable>();
+        SwordPickup = GameObject.Find("SwordPickup");
     }
 
     private void Update()
     {
         bool ShieldAct;
+        bool UnequipAct;
 
         if (interactable.attachedToHand)
         {
             hand = interactable.attachedToHand.handType;
+            Hand handequipment = interactable.attachedToHand;
             ShieldAct = shieldAction.GetState(hand);
+            UnequipAct = unequip.GetState(hand);
 
             if (ShieldAct && cooldown == false)
             {
                 StartCoroutine(ShieldActivation());
+            }
+            if (UnequipAct)
+            {
+                SwordPickup.SendMessage("TakeBackItem", handequipment);
             }
         }
     }

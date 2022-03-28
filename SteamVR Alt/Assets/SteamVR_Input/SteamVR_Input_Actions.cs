@@ -67,6 +67,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_gun_SnapTurnRight;
         
+        private static SteamVR_Action_Boolean p_gun_Unequip;
+        
         private static SteamVR_Action_Vibration p_gun_Haptic;
         
         private static SteamVR_Action_Boolean p_sword_GrabGrip;
@@ -80,6 +82,8 @@ namespace Valve.VR
         private static SteamVR_Action_Boolean p_sword_Teleport;
         
         private static SteamVR_Action_Boolean p_sword_GrabPinch;
+        
+        private static SteamVR_Action_Boolean p_sword_Unequip;
         
         public static SteamVR_Action_Boolean default_InteractUI
         {
@@ -281,6 +285,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean gun_Unequip
+        {
+            get
+            {
+                return SteamVR_Actions.p_gun_Unequip.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         public static SteamVR_Action_Vibration gun_Haptic
         {
             get
@@ -337,6 +349,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Boolean sword_Unequip
+        {
+            get
+            {
+                return SteamVR_Actions.p_sword_Unequip.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -365,13 +385,15 @@ namespace Valve.VR
                     SteamVR_Actions.gun_GrabGrip,
                     SteamVR_Actions.gun_SnapTurnLeft,
                     SteamVR_Actions.gun_SnapTurnRight,
+                    SteamVR_Actions.gun_Unequip,
                     SteamVR_Actions.gun_Haptic,
                     SteamVR_Actions.sword_GrabGrip,
                     SteamVR_Actions.sword_SnapTurnLeft,
                     SteamVR_Actions.sword_SnapTurnRight,
                     SteamVR_Actions.sword_Parry,
                     SteamVR_Actions.sword_Teleport,
-                    SteamVR_Actions.sword_GrabPinch};
+                    SteamVR_Actions.sword_GrabPinch,
+                    SteamVR_Actions.sword_Unequip};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_Teleport,
@@ -397,12 +419,14 @@ namespace Valve.VR
                     SteamVR_Actions.gun_GrabGrip,
                     SteamVR_Actions.gun_SnapTurnLeft,
                     SteamVR_Actions.gun_SnapTurnRight,
+                    SteamVR_Actions.gun_Unequip,
                     SteamVR_Actions.sword_GrabGrip,
                     SteamVR_Actions.sword_SnapTurnLeft,
                     SteamVR_Actions.sword_SnapTurnRight,
                     SteamVR_Actions.sword_Parry,
                     SteamVR_Actions.sword_Teleport,
-                    SteamVR_Actions.sword_GrabPinch};
+                    SteamVR_Actions.sword_GrabPinch,
+                    SteamVR_Actions.sword_Unequip};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.gun_Haptic};
@@ -429,12 +453,14 @@ namespace Valve.VR
                     SteamVR_Actions.gun_GrabGrip,
                     SteamVR_Actions.gun_SnapTurnLeft,
                     SteamVR_Actions.gun_SnapTurnRight,
+                    SteamVR_Actions.gun_Unequip,
                     SteamVR_Actions.sword_GrabGrip,
                     SteamVR_Actions.sword_SnapTurnLeft,
                     SteamVR_Actions.sword_SnapTurnRight,
                     SteamVR_Actions.sword_Parry,
                     SteamVR_Actions.sword_Teleport,
-                    SteamVR_Actions.sword_GrabPinch};
+                    SteamVR_Actions.sword_GrabPinch,
+                    SteamVR_Actions.sword_Unequip};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.buggy_Throttle};
@@ -466,12 +492,14 @@ namespace Valve.VR
                     SteamVR_Actions.gun_GrabGrip,
                     SteamVR_Actions.gun_SnapTurnLeft,
                     SteamVR_Actions.gun_SnapTurnRight,
+                    SteamVR_Actions.gun_Unequip,
                     SteamVR_Actions.sword_GrabGrip,
                     SteamVR_Actions.sword_SnapTurnLeft,
                     SteamVR_Actions.sword_SnapTurnRight,
                     SteamVR_Actions.sword_Parry,
                     SteamVR_Actions.sword_Teleport,
-                    SteamVR_Actions.sword_GrabPinch};
+                    SteamVR_Actions.sword_GrabPinch,
+                    SteamVR_Actions.sword_Unequip};
         }
         
         private static void PreInitActions()
@@ -501,6 +529,7 @@ namespace Valve.VR
             SteamVR_Actions.p_gun_GrabGrip = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Gun/in/GrabGrip")));
             SteamVR_Actions.p_gun_SnapTurnLeft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Gun/in/SnapTurnLeft")));
             SteamVR_Actions.p_gun_SnapTurnRight = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Gun/in/SnapTurnRight")));
+            SteamVR_Actions.p_gun_Unequip = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Gun/in/Unequip")));
             SteamVR_Actions.p_gun_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/Gun/out/Haptic")));
             SteamVR_Actions.p_sword_GrabGrip = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/GrabGrip")));
             SteamVR_Actions.p_sword_SnapTurnLeft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/SnapTurnLeft")));
@@ -508,6 +537,7 @@ namespace Valve.VR
             SteamVR_Actions.p_sword_Parry = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/Parry")));
             SteamVR_Actions.p_sword_Teleport = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/Teleport")));
             SteamVR_Actions.p_sword_GrabPinch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/GrabPinch")));
+            SteamVR_Actions.p_sword_Unequip = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/Unequip")));
         }
     }
 }

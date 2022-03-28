@@ -930,6 +930,9 @@ MonoBehaviour:
   shieldAction:
     actionPath: /actions/Sword/in/Parry
     needsReinit: 0
+  unequip:
+    actionPath: /actions/Sword/in/Unequip
+    needsReinit: 0
   Shield: {fileID: 4332776017492963290}
 --- !u!1 &6102701634504535473
 GameObject:

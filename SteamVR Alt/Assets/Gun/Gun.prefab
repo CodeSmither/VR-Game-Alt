@@ -2249,7 +2249,7 @@ MonoBehaviour:
     actionPath: /actions/Gun/in/Shoot
     needsReinit: 0
   dropAction:
-    actionPath: /actions/Gun/in/GrabGrip
+    actionPath: /actions/Gun/in/Unequip
     needsReinit: 0
   timeTilNextShot: 0
   barrel: {fileID: 7771837681363486153}

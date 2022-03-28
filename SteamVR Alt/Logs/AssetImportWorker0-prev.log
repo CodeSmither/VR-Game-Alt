@@ -15,12 +15,12 @@ C:/Users/ConradS/Documents/GitHub/VR-Game-Alt/SteamVR Alt
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50539
+50470
 Successfully changed project path to: C:/Users/ConradS/Documents/GitHub/VR-Game-Alt/SteamVR Alt
 C:/Users/ConradS/Documents/GitHub/VR-Game-Alt/SteamVR Alt
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 4675.24 ms, found 15 plugins.
-Preloading 2 native plugins for Editor in 107.24 ms.
+Refreshing native plugins compatible for Editor in 889.77 ms, found 15 plugins.
+Preloading 2 native plugins for Editor in 47.40 ms.
 Initialize engine version: 2021.1.18f1 (25bdc3efbc2d)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.1.18f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path C:/Users/ConradS/Documents/GitHub/VR-Game-Alt/SteamVR Alt/Assets
@@ -35,5 +35,5 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.1.18f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.1.18f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.1.18f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56928
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56272
 Begin MonoManager ReloadAssembly

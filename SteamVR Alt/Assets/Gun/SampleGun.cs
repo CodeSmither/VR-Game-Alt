@@ -11,13 +11,14 @@ public class SampleGun : MonoBehaviour
 
     private SteamVR_Input_Sources hand;
     private Interactable interactable;
-    float timeBetweenShots = 1;
+    float timeBetweenShots = 0.2f;
     public float timeTilNextShot = 0;
     private int ammo;
     [SerializeField]private Transform barrel;
     [SerializeField]private GameObject barrelObj;
     [SerializeField]private GameObject bulletprefab;
     [SerializeField] private AudioSource GunClick;
+    private GameObject GunPickup;
 
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class SampleGun : MonoBehaviour
     {
         ammo = 24;
         interactable = GetComponent<Interactable>();
+        GunPickup = GameObject.Find("GunPickup");
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class SampleGun : MonoBehaviour
         {
             //get the hand attached to the interactable
             hand = interactable.attachedToHand.handType;
+            Hand handequipment = interactable.attachedToHand;
             //get teh state of the action prescribed for fire above
             actFire = fireAction.GetState(hand);
             actDrop = dropAction.GetState(hand);
@@ -64,7 +67,7 @@ public class SampleGun : MonoBehaviour
             }
             if (actDrop)
             {
-                
+                    GunPickup.SendMessage("TakeBackItem", handequipment);
             }
         }
        
