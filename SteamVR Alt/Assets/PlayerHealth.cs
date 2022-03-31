@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private GameObject VRPlayer;
     [SerializeField] private int health;
+    public SteamVR_Action_Vibration damagefeedback;
     public bool InGame;
     
 
@@ -34,6 +36,10 @@ public class PlayerHealth : MonoBehaviour
         {
             GameOver();
         }
+        if ()
+        {
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,10 +47,13 @@ public class PlayerHealth : MonoBehaviour
         if (other.gameObject.name == "Bullet")
         {
             health -= 10;
+
             Destroy(other.gameObject);
+            Haptics(1f,90f,0.7f,SteamVR_Input_Sources.RightHand);
         }
     }
 
+    //Checks the player isn't touching the walls or they take damage
     private void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.tag == "Walls")
@@ -53,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    //Health Decreases overtime during the game
     private void HealthCountdown()
     {
         if (InGame == true)
@@ -62,16 +72,23 @@ public class PlayerHealth : MonoBehaviour
 
         Invoke("HealthCountdown", 2f);
     }
-
+    
+    // sends the player to the gamover area when they run out of health
     private void GameOver()
     {
         VRPlayer.transform.position = new Vector3(0, 0, 50);
         InGame = false;
     }
 
+    //resets the players health and returns them to the menu
     public void Restart()
     {
         health = 100;
         VRPlayer.transform.position = new Vector3(0,20,0);
+    }
+    // helps apply haptic feedback when called
+    private void Haptics(float duration,float frequency, float amps, SteamVR_Input_Sources HapticSource)
+    {
+        damagefeedback.Execute(0,duration, frequency, amps, HapticSource);
     }
 }

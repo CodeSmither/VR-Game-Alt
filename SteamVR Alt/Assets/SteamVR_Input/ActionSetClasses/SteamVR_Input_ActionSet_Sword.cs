@@ -72,5 +72,13 @@ namespace Valve.VR
                 return SteamVR_Actions.sword_Unequip;
             }
         }
+        
+        public virtual SteamVR_Action_Vibration Haptic
+        {
+            get
+            {
+                return SteamVR_Actions.sword_Haptic;
+            }
+        }
     }
 }

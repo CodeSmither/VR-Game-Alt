@@ -85,6 +85,8 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_sword_Unequip;
         
+        private static SteamVR_Action_Vibration p_sword_Haptic;
+        
         public static SteamVR_Action_Boolean default_InteractUI
         {
             get
@@ -357,6 +359,14 @@ namespace Valve.VR
             }
         }
         
+        public static SteamVR_Action_Vibration sword_Haptic
+        {
+            get
+            {
+                return SteamVR_Actions.p_sword_Haptic.GetCopy<SteamVR_Action_Vibration>();
+            }
+        }
+        
         private static void InitializeActionArrays()
         {
             Valve.VR.SteamVR_Input.actions = new Valve.VR.SteamVR_Action[] {
@@ -393,7 +403,8 @@ namespace Valve.VR
                     SteamVR_Actions.sword_Parry,
                     SteamVR_Actions.sword_Teleport,
                     SteamVR_Actions.sword_GrabPinch,
-                    SteamVR_Actions.sword_Unequip};
+                    SteamVR_Actions.sword_Unequip,
+                    SteamVR_Actions.sword_Haptic};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_Teleport,
@@ -429,10 +440,12 @@ namespace Valve.VR
                     SteamVR_Actions.sword_Unequip};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
                     SteamVR_Actions.default_Haptic,
-                    SteamVR_Actions.gun_Haptic};
+                    SteamVR_Actions.gun_Haptic,
+                    SteamVR_Actions.sword_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
                     SteamVR_Actions.default_Haptic,
-                    SteamVR_Actions.gun_Haptic};
+                    SteamVR_Actions.gun_Haptic,
+                    SteamVR_Actions.sword_Haptic};
             Valve.VR.SteamVR_Input.actionsPose = new Valve.VR.SteamVR_Action_Pose[] {
                     SteamVR_Actions.default_Pose,
                     SteamVR_Actions.mixedreality_ExternalCamera};
@@ -538,6 +551,7 @@ namespace Valve.VR
             SteamVR_Actions.p_sword_Teleport = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/Teleport")));
             SteamVR_Actions.p_sword_GrabPinch = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/GrabPinch")));
             SteamVR_Actions.p_sword_Unequip = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/Sword/in/Unequip")));
+            SteamVR_Actions.p_sword_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/Sword/out/Haptic")));
         }
     }
 }
