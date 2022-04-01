@@ -8,7 +8,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private GameObject VRPlayer;
     [SerializeField] private int health;
-    public SteamVR_Action_Vibration damagefeedback;
+    public SteamVR_Action_Vibration[] damagefeedbackArray;
+    private SteamVR_Action_Vibration damagefeedback;
     public bool InGame;
     
 
@@ -32,13 +33,24 @@ public class PlayerHealth : MonoBehaviour
     private void FixedUpdate()
     {
         gameObject.transform.position = new Vector3(VRPlayer.transform.position.x, 1, VRPlayer.transform.position.z);
-        if(health < 1)
+        if (health < 1)
         {
             GameOver();
         }
+
+
+
         if ()
         {
-
+            damagefeedback = damagefeedbackArray[0];
+        }
+        else if ()
+        {
+            damagefeedback = damagefeedbackArray[1];
+        }
+        else if ()
+        {
+            damagefeedback = damagefeedbackArray[2];
         }
     }
 
@@ -50,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
 
             Destroy(other.gameObject);
             Haptics(1f,90f,0.7f,SteamVR_Input_Sources.RightHand);
+            Haptics(1f, 90f, 0.7f, SteamVR_Input_Sources.LeftHand);
         }
     }
 
