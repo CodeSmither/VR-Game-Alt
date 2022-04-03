@@ -7,6 +7,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using TeleportMarching;
 
 namespace Valve.VR.InteractionSystem
 {
@@ -868,6 +869,8 @@ namespace Valve.VR.InteractionSystem
 			if ( teleportPoint != null )
 			{
 				teleportPosition = teleportPoint.transform.position;
+				// New Script addition
+				TeleportMarch.March(teleportPoint);
 
 				//Teleport to a new scene
 				if ( teleportPoint.teleportType == TeleportPoint.TeleportPointType.SwitchToNewScene )
@@ -894,9 +897,9 @@ namespace Valve.VR.InteractionSystem
 			if ( teleportingToMarker.ShouldMovePlayer() )
 			{
 				Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.feetPositionGuess;
-				player.trackingOriginTransform.position = teleportPosition + playerFeetOffset;
-
-                if (player.leftHand.currentAttachedObjectInfo.HasValue)
+				player.trackingOriginTransform.position = playerFeetOffset;
+				// original player.trackingOriginTransform.position = teleportPosition + playerFeetOffset;
+				if (player.leftHand.currentAttachedObjectInfo.HasValue)
                     player.leftHand.ResetAttachedTransform(player.leftHand.currentAttachedObjectInfo.Value);
                 if (player.rightHand.currentAttachedObjectInfo.HasValue)
                     player.rightHand.ResetAttachedTransform(player.rightHand.currentAttachedObjectInfo.Value);

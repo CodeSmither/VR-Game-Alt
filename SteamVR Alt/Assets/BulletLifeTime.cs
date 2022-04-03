@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class BulletLifeTime : MonoBehaviour
 {
+    AudioSource LazerNoise;
+    // Stores bullet sound
     void Awake()
     {
+        LazerNoise = gameObject.GetComponent<AudioSource>();
+        LazerNoise.Play();
         StartCoroutine(EndOfLife());
+        // activates the bullet sound as soon as it is created which has the same effect as shooting when clicking the fire button
     }
     IEnumerator EndOfLife()
     {
         yield return new WaitForSeconds(5f);
         Destroy(gameObject);
+        // destroys a bullet after 5 seconds if it stays in the air too long before hitting a wall 
+        // this stops the player being stuck in iniscable traps as often
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -19,5 +26,6 @@ public class BulletLifeTime : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        // destroys bullet preaturely if it hits a wall
     }
 }

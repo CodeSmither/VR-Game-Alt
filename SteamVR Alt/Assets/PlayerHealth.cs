@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
+using UnityEngine.AI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -38,17 +39,17 @@ public class PlayerHealth : MonoBehaviour
             GameOver();
         }
 
-
-
-        if ()
+        GameObject swordpackage = GameObject.Find("Sword");
+        GameObject gunpackage = GameObject.Find("Gun");
+        if (swordpackage != null && gunpackage == null)
         {
             damagefeedback = damagefeedbackArray[0];
         }
-        else if ()
+        else if (swordpackage == null && gunpackage != null)
         {
             damagefeedback = damagefeedbackArray[1];
         }
-        else if ()
+        else if (swordpackage == null && gunpackage == null)
         {
             damagefeedback = damagefeedbackArray[2];
         }
@@ -86,9 +87,11 @@ public class PlayerHealth : MonoBehaviour
         Invoke("HealthCountdown", 2f);
     }
     
-    // sends the player to the gamover area when they run out of health
+    // sends the player to the gameover area when they run out of health
     private void GameOver()
     {
+        
+        VRPlayer.GetComponent<NavMeshAgent>().enabled = false;
         VRPlayer.transform.position = new Vector3(0, 0, 50);
         InGame = false;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class MenuUIOptions : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class MenuUIOptions : MonoBehaviour
         player.transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
         OptionsMenu.SetActive(false);
         playerHealth.InGame = true;
+        player.GetComponent<NavMeshAgent>().enabled = true;
     }
     public void EnableOptions()
     {
