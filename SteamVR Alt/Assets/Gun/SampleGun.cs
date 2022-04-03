@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
+using UnityEngine.UI;
 
 public class SampleGun : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class SampleGun : MonoBehaviour
     public float timeTilNextShot = 0;
     // float used to check if the time needed for the next shot has occured
     private int ammo;
+    public Text ammoremaining;
     // ammo stores the remaining ammo as an interger for the gun
     [SerializeField]private Transform barrel;
     // stores where the barrel of the gun is to fire out of for bullet instantiation
@@ -86,7 +88,9 @@ public class SampleGun : MonoBehaviour
                     GunPickup.SendMessage("TakeBackItem", handequipment);
             }
         }
-       
+
+
+        ammoremaining.text = ammo.ToString() + " Bullets remaining";
     }
 
    
