@@ -1423,13 +1423,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3771351932032324280}
-  m_LocalRotation: {x: 0.2859392, y: -0, z: -0, w: 0.9582478}
-  m_LocalPosition: {x: 0, y: -0.07592353, z: 0.08277148}
+  m_LocalRotation: {x: 0.37703264, y: 0, z: 0, w: 0.9262}
+  m_LocalPosition: {x: 0, y: -0.148, z: 0.165}
   m_LocalScale: {x: 0.05, y: 0.050000004, z: 0.3}
   m_Children: []
   m_Father: {fileID: 5290565810496598631}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 44.3, y: 0, z: 0}
 --- !u!1 &3813498902734111743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,12 +2348,14 @@ MonoBehaviour:
   dropAction:
     actionPath: /actions/Gun/in/Unequip
     needsReinit: 0
+  interactable: {fileID: 0}
   timeTilNextShot: 0
-  ammoremaining: {fileID: 0}
+  ammoremaining: {fileID: 3261324726338376323}
   barrel: {fileID: 7771837681363486153}
   barrelObj: {fileID: 3771351932032324280}
   bulletprefab: {fileID: 1649773975330709009, guid: b8896bdd1b6ed6e43a1d03fcbf2bf2e5, type: 3}
   GunClick: {fileID: 2648799058726687518}
+  GunPickup: {fileID: 0}
 --- !u!82 &2648799058726687518
 AudioSource:
   m_ObjectHideFlags: 0

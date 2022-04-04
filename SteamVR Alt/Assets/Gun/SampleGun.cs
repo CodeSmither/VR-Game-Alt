@@ -12,7 +12,7 @@ public class SampleGun : MonoBehaviour
     // Actions which occur when a bind is pressed in VR
     private SteamVR_Input_Sources hand;
     // The Hand which the object is attached to
-    private Interactable interactable;
+    public Interactable interactable;
     // The Interactable form of the gun
     float timeBetweenShots = 0.2f;
     // The Gun has a time between shots to prevent spamming of shots causing bullets to bounce of each other
@@ -29,7 +29,7 @@ public class SampleGun : MonoBehaviour
     // stores the bullet prefab for instatiation
     [SerializeField] private AudioSource GunClick;
     // stores the sound for the gun 
-    private GameObject GunPickup;
+    public GameObject GunPickup;
     // stores the Gun Object it's self
 
     

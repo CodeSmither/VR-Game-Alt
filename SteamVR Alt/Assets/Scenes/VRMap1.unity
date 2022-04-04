@@ -2899,7 +2899,7 @@ Transform:
   - {fileID: 1895291825}
   - {fileID: 1571965754}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &290298523
 MonoBehaviour:
@@ -3502,7 +3502,7 @@ Transform:
   m_Children:
   - {fileID: 1988483928859779517}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &362257861
 MonoBehaviour:
@@ -9429,11 +9429,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939161657}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
-  m_Father: {fileID: 1579969343}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &939161660
 BoxCollider:
@@ -9446,8 +9446,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5282382, z: 1}
-  m_Center: {x: 0, y: -0.23588091, z: 0}
+  m_Size: {x: 1, y: 0.74641234, z: 1}
+  m_Center: {x: 0, y: -0.2126747, z: 0}
 --- !u!23 &939161661
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9865,7 +9865,7 @@ Transform:
   - {fileID: 383991270}
   - {fileID: 1183622621}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &994601153
 GameObject:
@@ -10596,10 +10596,10 @@ NavMeshAgent:
   m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -12218,7 +12218,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1239181637
 GameObject:
@@ -12255,7 +12255,7 @@ Transform:
   - {fileID: 145650122}
   - {fileID: 1876771326}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1243302171
 PrefabInstance:
@@ -16032,8 +16032,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.57048386, y: 1, z: 0.71107835}
+  m_Center: {x: -0.08255566, y: 0, z: 0.00060120225}
 --- !u!23 &1579969341
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16094,8 +16094,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
-  m_Children:
-  - {fileID: 939161658}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16113,7 +16112,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VRPlayer: {fileID: 1039793641}
   health: 0
-  damagefeedbackArray: []
+  damagefeedbackArray:
+  - actionPath: /actions/Sword/out/Haptic
+    needsReinit: 0
+  - actionPath: /actions/Gun/out/Haptic
+    needsReinit: 0
+  - actionPath: /actions/default/out/Haptic
+    needsReinit: 0
   InGame: 0
   MovementBall: {fileID: 0}
 --- !u!114 &1579969345
@@ -17576,7 +17581,7 @@ Transform:
   m_Children:
   - {fileID: 1215487649}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1736048269
 MonoBehaviour:
@@ -19019,7 +19024,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1918144353
 PrefabInstance:
@@ -19388,28 +19393,28 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'You are a Rogue Robot who Is Trying to Survive the an Infinite Onslaught
-    Of Robots.
+  m_Text: 'You are a Rogue Robot who Is Trying to Survive an Infinite Onslaught Of
+    Robots.
 
 
-    Your objective is to destroy as many enemy Robots as possible
-    and prevent you health from reaching 0. However, Watchout your battery is Draining
-    and you can only replenish it by collecting blue orbs from dying enemies.
+    Your objective is to destroy as many enemy Robots as possible and
+    prevent you health from reaching 0. However, Watchout your battery is Draining
+    and you can only replenish it by collecting blue orbs from dying enemies. Check
+    you wrist to see your health.
 
 
-    to
-    Grab a weapon press Trigger on the weapon with a empty hand.
+    to Grab a weapon press Trigger on the weapon
+    with a empty hand.
 
 
-    To Use that
-    weapons ability Press Trigger on the hand you are holding it.
+    To Use that weapons ability Press Trigger on the hand
+    you are holding it.
 
-    To Drop a
-    Weapon press X or A depending on which hand the weapon is in.
+    To Drop a Weapon press X or A depending on which hand
+    the weapon is in.
 
 
-    Your Gun
-    does Run Out of Ammo So Be Careful.'
+    Your Gun does Run Out of Ammo So Be Careful.'
 --- !u!222 &1944818490
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20562,7 +20567,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2088240780
 GameObject:
@@ -20805,7 +20810,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2101892271
 PrefabInstance:

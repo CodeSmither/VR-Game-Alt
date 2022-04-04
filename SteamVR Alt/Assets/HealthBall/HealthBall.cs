@@ -43,7 +43,7 @@ public class HealthBall : MonoBehaviour
     {
         if(other.gameObject.layer == 6 && other.gameObject.tag == "VRPlayer")
         {
-            playerHealth.Health += 40;
+            playerHealth.Health += 20;
             Destroy(gameObject);
         }
         //if (other.gameObject != null)

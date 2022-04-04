@@ -896,8 +896,8 @@ namespace Valve.VR.InteractionSystem
 
 			if ( teleportingToMarker.ShouldMovePlayer() )
 			{
-				Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.feetPositionGuess;
-				player.trackingOriginTransform.position = playerFeetOffset;
+				//Vector3 playerFeetOffset = player.trackingOriginTransform.position - player.feetPositionGuess;
+				//player.trackingOriginTransform.position = playerFeetOffset;
 				// original player.trackingOriginTransform.position = teleportPosition + playerFeetOffset;
 				if (player.leftHand.currentAttachedObjectInfo.HasValue)
                     player.leftHand.ResetAttachedTransform(player.leftHand.currentAttachedObjectInfo.Value);

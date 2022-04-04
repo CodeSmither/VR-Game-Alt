@@ -10,8 +10,8 @@ public class Sword : MonoBehaviour
     public SteamVR_Action_Boolean shieldAction;
     public SteamVR_Action_Boolean unequip;
     // stores the interactable object as a reference
-    private Interactable interactable;
-    private GameObject SwordPickup;
+    public Interactable interactable;
+    public GameObject SwordPickup;
     // stores the hand the object is held in
     private SteamVR_Input_Sources hand;
     // stores the shield object for the trigger event

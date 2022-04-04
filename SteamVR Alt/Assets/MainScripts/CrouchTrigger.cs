@@ -5,9 +5,9 @@ using UnityEngine;
 public class CrouchTrigger : MonoBehaviour
 {
     //checks if the player starts ducking
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other == GameObject.Find("HeadCollider"))
+        if (other.gameObject.name == "HeadCollider")
         {
             GameEvents.currentEvent.OnDuckTriggerEnter();
         }
@@ -15,7 +15,7 @@ public class CrouchTrigger : MonoBehaviour
     //checks if the player finishes ducking
     private void OnTriggerExit(Collider other)
     {
-        if (other == GameObject.Find("HeadCollider"))
+        if (other.gameObject.name == "HeadCollider")
         {
             GameEvents.currentEvent.OnDuckTriggerEnd();
         }

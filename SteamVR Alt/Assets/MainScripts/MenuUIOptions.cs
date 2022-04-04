@@ -55,6 +55,8 @@ public class MenuUIOptions : MonoBehaviour
         {
             player.transform.position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
             OptionsMenu.SetActive(false);
+            HowtoPlay.SetActive(false);
+            QuestionBoard.SetActive(true);
             playerHealth.InGame = true;
             player.GetComponent<NavMeshAgent>().enabled = true;
         }
@@ -83,6 +85,7 @@ public class MenuUIOptions : MonoBehaviour
         if (HowtoPlay.activeInHierarchy == false)
         {
             HowtoPlay.SetActive(true);
+            ReadInstructions = true;
         }
         else if (HowtoPlay.activeInHierarchy == true)
         {
@@ -110,6 +113,7 @@ public class MenuUIOptions : MonoBehaviour
     // restarts the game by reseting the player's health and score and ending the game
     public void Restart()
     {
+        QuestionBoard.SetActive(false);
         playerHealth.Restart();
         totalScore.Restart();
     }
