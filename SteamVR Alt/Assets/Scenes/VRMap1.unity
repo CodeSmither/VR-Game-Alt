@@ -19398,7 +19398,7 @@ MonoBehaviour:
 
 
     Your objective is to destroy as many enemy Robots as possible and
-    prevent you health from reaching 0. However, Watchout your battery is Draining
+    prevent your battery from reaching 0%. However, Watchout your battery is Draining
     and you can only replenish it by collecting blue orbs from dying enemies. Check
     you wrist to see your health.
 
